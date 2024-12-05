@@ -1,0 +1,83 @@
+.msGrid-m { 
+  width: 600px;
+  height: 600px;
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(16, 1fr);  
+  background-color: grey;
+}
+
+.msGrid-s { 
+  width: 560px;
+  height: 560px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);  
+  background-color: grey;
+}
+
+.msGrid-l { 
+  width: 1000px;
+  height: 600px;
+  display: grid;
+  grid-template-columns: repeat(32, 1fr);
+  grid-template-rows: repeat(16, 1fr);  
+  background-color: grey;
+}
+
+.msGrid-m div {
+  height: 100%;
+  width: 100%;
+}
+
+.msGrid-s div {
+  height: 100%;
+  width: 100%;
+}
+
+.msGrid-l div {
+  height: 100%;
+  width: 100%;
+}
+
+.msGrid-m div p {
+  color: blue;
+  font-size: 25px;
+}
+
+.msGrid-s div p {
+  color: blue;
+  font-size: 40px;
+}
+
+.msGrid-l div p {
+  color: blue;
+  font-size: 25px;
+}
+
+
+
+.valid { 
+  background-image: url('/src/assets/game/tile-icon.png');
+  background-size: cover;
+}
+
+.bomb { 
+  background-image: url('/src/assets/game/tile-icon.png');
+  background-size: cover;
+}
+
+.explode {
+  background-image: url('/src/assets/game/mine-bg-tile.png');
+  background-size: cover;
+}
+
+.flag { 
+  background-image: url('/src/assets/game/flag-tile.png');
+  background-size: cover;
+}
+
+.checked { 
+  background-image: url('/src/assets/game/bg-tile.png');
+  background-size: cover;
+}
