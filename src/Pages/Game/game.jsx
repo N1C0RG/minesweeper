@@ -30,10 +30,6 @@ function Game() {
   //el timer 
   const {
     totalSeconds,
-    seconds,
-    minutes,
-    hours,
-    days,
     isRunning,
     start,
     pause,
