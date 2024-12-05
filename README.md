@@ -1,2 +1,2 @@
 # minesweeper
-Juego de minesweeper
+Juego de minesweeper. Espero que lo disfruten. 
