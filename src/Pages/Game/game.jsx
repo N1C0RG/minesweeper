@@ -1,5 +1,5 @@
 import Navbar from "../../Commponents/Navbar/navbar";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Smile from "../../assets/game/smile-icon.png";
 import Sad from "../../assets/game/sad-icon.png";
 import React from "react";
@@ -10,6 +10,8 @@ import ExplosionSound from "../../assets/lose_minesweeper.wav";
 import { useStopwatch } from 'react-timer-hook';
 import WinMessageComponent from "../../Commponents/GameMessage/winMessage";
 import LoseMessageComponent from "../../Commponents/GameMessage/loseMessage";
+import { AppContext } from "../../context/appContext";
+import axios from "axios";
 
 function Game() {
   const [shuffledArray, setShuffledArray] = useState([]);
@@ -40,11 +42,13 @@ function Game() {
   const [winMessage, setWinMessage] = useState(false);
   const [loseMessage, setLoseMessage] = useState(false);
 
+  // data del usuario 
+  const { id, score } = useContext(AppContext);
+
   function closeMessage() {
     setWinMessage(false);
     setLoseMessage(false);
   } 
-
 
   // defino componentes css 
 
@@ -73,7 +77,6 @@ function Game() {
         break;
     }   
   } 
-
 
   function createArray() {
     const bombArray = Array(bombAmount).fill('bomb');
@@ -290,6 +293,7 @@ function Game() {
       }
       if (matches === bombAmount) {
         setIsWin(true);
+        updateScore();
         setWinMessage(true);
       } 
     }
@@ -297,7 +301,6 @@ function Game() {
 
   function replayGame() { 
     reset();
-    //pause();
     setWinMessage(false);
     setLoseMessage(false);
     setFirstClick(false);
@@ -306,6 +309,20 @@ function Game() {
     setFalgs(0);
     setReplay(!replay);
   }
+
+  function updateScore() {
+    const points = Math.floor(1000 / totalSeconds);
+    if (points < score){ 
+      axios.put(`http://localhost:3000/user/${id}`, {
+        score: points
+      }).then((response) => {
+        console.log('Update score success');
+      }).catch((error) => {
+        console.error('Update score error: ', error);
+      });
+    }
+  }
+
 
   return (
     <>
@@ -318,7 +335,7 @@ function Game() {
             {
               "w-full sm:w-[600px]": width === 16,
               "w-full sm:w-[560px]": width === 8,
-              "w-full sm:w-[1000px]": width === 32
+              "w-full lg:w-[1000px]": width === 32
             }
           )}>
             <span className="ml-10">
@@ -337,7 +354,7 @@ function Game() {
             {
               "msGrid-m": width === 16,
               "msGrid-s": width === 8,
-              "msGrid-l": width === 32
+              "msGrid-l": width === 32 
             }
           )}>
             {tilesC.map((tile, index) => (

@@ -25,21 +25,6 @@
   background-color: #a8a9aa;
 }
 
-.msGrid-m div {
-  height: 100%;
-  width: 100%;
-}
-
-.msGrid-s div {
-  height: 100%;
-  width: 100%;
-}
-
-.msGrid-l div {
-  height: 100%;
-  width: 100%;
-}
-
 .msGrid-m div p {
   color: blue;
   font-size: 25px;
@@ -55,29 +40,37 @@
   font-size: 25px;
 }
 
-
-
 .valid { 
+  height: 100%;
+  width: 100%;
   background-image: url('/src/assets/game/tile-icon.png');
   background-size: cover;
 }
 
 .bomb { 
+  height: 100%;
+  width: 100%;
   background-image: url('/src/assets/game/tile-icon.png');
   background-size: cover;
 }
 
 .explode {
+  height: 100%;
+  width: 100%;
   background-image: url('/src/assets/game/mine-bg-tile.png');
   background-size: cover;
 }
 
-.flag { 
+.flag {
+  height: 100%;
+  width: 100%; 
   background-image: url('/src/assets/game/flag-tile.png');
   background-size: cover;
 }
 
 .checked { 
+  height: 100%;
+  width: 100%;
   background-image: url('/src/assets/game/bg-tile.png');
   background-size: cover;
 }
@@ -94,9 +87,45 @@
     height: auto;
     aspect-ratio: 1 / 1;
   }
+
+  .msGrid-m div p {
+    color: blue;
+    font-size: 15px;
+  }
+  
+  .msGrid-s div p {
+    color: blue;
+    font-size: 30px;
+  }
+
+}
+
+@media (max-width: 1000px) {
   .msGrid-l { 
     width: 100%;
     height: auto;
+  }
+  .msGrid-l div p {
+    color: blue;
+    font-size: 13px;
+  }
+  .valid { 
+    aspect-ratio: 1 / 1;
+  }
+  
+  .bomb { 
+    aspect-ratio: 1 / 1;
+  }
+  
+  .explode {
+    aspect-ratio: 1 / 1;
+  }
+  
+  .flag {
+    aspect-ratio: 1 / 1;
+  }
+  
+  .checked { 
     aspect-ratio: 1 / 1;
   }
 }

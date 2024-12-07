@@ -1,13 +1,12 @@
 import cn from "classnames";
 import { Settings } from 'lucide-react';
 import ConfigItem from "./gameConfigItem";
-import { Skull } from 'lucide-react';
-import { Frown } from 'lucide-react';
-import { Smile } from 'lucide-react';
+import { Skull, Frown, Smile } from 'lucide-react';
 import { useState, useEffect } from "react";
-
+import NotValidModeMsg from './notValidMode';
 function GameConfig({onClickFunction}) {
   const [configOpen, setConfigOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     //cerrar el config cuando clickeo la pantalla 
     useEffect(() => {
@@ -22,6 +21,18 @@ function GameConfig({onClickFunction}) {
         document.body.removeEventListener('click', handleClickOutside);
       };
     }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <>
@@ -38,10 +49,15 @@ function GameConfig({onClickFunction}) {
         )}>
           <ConfigItem value="easy" icon={<Smile size={30}/>} func={onClickFunction}/>
           <ConfigItem value="medium" icon={<Frown size={30}/>} func={onClickFunction}/>
-          <ConfigItem value="hard" icon={<Skull size={30}/>} func={onClickFunction}/>
+          {windowWidth > 640 ? 
+            (<ConfigItem value="hard" icon={<Skull size={30}/>} func={onClickFunction}/>) : null
+          }
         </div>
       </section>
     </div>
+    {windowWidth > 640 ? 
+      null : ( <NotValidModeMsg />)
+    }
     </>
   )
 }

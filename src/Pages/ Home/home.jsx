@@ -8,13 +8,44 @@ import I4 from "../../assets/I4.png";
 import I5 from "../../assets/I5.png";
 import I6w from "../../assets/I6w.png";
 import I6l from "../../assets/I6l.png";
+import I7 from "../../assets/I7.png";
+import Instruction from "../../Commponents/Instruction/instruction";
+import Login from "../../Commponents/Login/login";
+import cn from "classnames";
+import { useContext } from "react";
+import { AppContext } from "../../context/appContext";
 
 function Home () {
+
+  const { logged } = useContext(AppContext);
+
+  const instructions = [
+    "Click on the icon to start the game.",
+    "Click on a cell to reveal it.",
+    "Right click on a cell to flag it.",
+    "Reveal all cells without mines to win.",
+    "Reveal a cell with a mine to lose.",
+    "Replay by clicking the trophy or vault boy.",
+    "Hard mode for screen sizes under 640px is not available."
+  ];
+
   return (
     <div className="text-blue-400 relative min-h-screen">
-      <Navbar />
+      <div className={cn("", 
+        {
+          "pointer-events-none blur-md": !logged,
+          "pointer-events-auto blur-none": logged
+        }
+      )}>
+        <Navbar />
+      </div>
       <div className="absolute inset-0 bgGrid z-[-1] opacity-50"></div>
-      <div>
+      <div className={cn("", 
+        {
+          "pointer-events-none blur-md": !logged,
+          "pointer-events-auto blur-none": logged
+        }
+      )}>
         <section>
           <h1 className="font-bold text-6xl sm:text-9xl text-blue-800 text-center">Welcome to Minesweeper</h1>
           <span className="flex justify-center flex-row items-center mt-2">
@@ -38,36 +69,20 @@ function Home () {
         <section className="flex flex-col gap-10 mt-20 ml-8 mr-8 text-4xl mb-10">
           <h3 className="text-center text-blue-600 text-5xl sm:text-7xl">Instructions</h3>
           <span className="flex flex-col gap-5 items-center">
-            <div className="container flex flex-col sm:flex-row p-4 rounded-lg gap-10 bg-[#004396] items-center">
-              <img className="hover:scale-110 sm:size-1/3 rounded" src={I1} alt="click icon instruction" />
-              <p className="text-slate-950 text-2xl sm:text-4xl">Click on the icon to start the game.</p>
-            </div>
-            <div className="container flex flex-col sm:flex-row p-4 rounded-lg gap-10 bg-[#004396] items-center">
-              <img className="hover:scale-110 sm:size-1/3 rounded" src={I2} alt="click icon instruction" />
-              <p className="text-slate-950 text-2xl sm:text-4xl">Click on a cell to reveal it.</p>
-            </div>
-            <div className="container flex flex-col sm:flex-row p-4 rounded-lg gap-10 bg-[#004396] items-center">
-              <img className="hover:scale-110 sm:size-1/3 rounded" src={I3} alt="click icon instruction" />
-              <p className="text-slate-950 text-2xl sm:text-4xl">Right click on a cell to flag it.</p>
-            </div>
-            <div className="container flex flex-col sm:flex-row p-4 rounded-lg gap-10 bg-[#004396] items-center">
-              <img className="hover:scale-110 sm:size-1/3 rounded" src={I4} alt="click icon instruction" />
-              <p className="text-slate-950 text-2xl sm:text-4xl">Reveal all cells without mines to win.</p>
-            </div>
-            <div className="container flex flex-col sm:flex-row p-4 rounded-lg gap-10 bg-[#004396] items-center">
-              <img className="hover:scale-110 sm:size-1/3 rounded" src={I5} alt="click icon instruction" />
-              <p className="text-slate-950 text-2xl sm:text-4xl">Reveal a cell with a mine to lose.</p>
-            </div>
-            <div className="container flex flex-col sm:flex-row p-4 rounded-lg gap-10 bg-[#004396] items-center">
-              <img className="hover:scale-110 sm:size-1/3 rounded" src={I6w} alt="click icon instruction" />
-              <img className="hover:scale-110 sm:size-1/3 rounded" src={I6l} alt="click icon instruction" />
-              <p className="text-slate-950 text-2xl sm:text-4xl">Replay by clicking the trophy or vault boy.</p>
-            </div>
+            <Instruction images={[I1]} text={instructions[0]}/>
+            <Instruction images={[I2]} text={instructions[1]}/>
+            <Instruction images={[I3]} text={instructions[2]}/>
+            <Instruction images={[I4]} text={instructions[3]}/>
+            <Instruction images={[I5]} text={instructions[4]}/>
+            <Instruction images={[I6l, I6w]} text={instructions[5]}/>
+            <Instruction images={[I7]} text={instructions[6]}/>
           </span>
 
         </section>
-
       </div>
+      <section className="absolute top-[10%]  left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40 blur-none">
+        <Login />
+      </section>
     </div>
   )
 }

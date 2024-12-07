@@ -1,4 +1,4 @@
-import { House, Info, MenuIcon } from "lucide-react";
+import { House, Info, MenuIcon, ScrollText } from "lucide-react";
 import NavbarItem from "../NavbarItem/navbarItem";
 import { useState } from "react";
 import cn from "classnames";
@@ -36,6 +36,7 @@ function Navbar() {
             })}> 
             <NavbarItem icon={<House size={40} />} child="Home" route="/" />
             <NavbarItem icon={<Info size={40} />} child="About Us" route="/about" />
+            <NavbarItem icon={<ScrollText size={40} />} child="Leader Board" route="/leader-board" />
           </div>
         </section>
       </nav>
