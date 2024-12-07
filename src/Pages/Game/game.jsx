@@ -64,6 +64,7 @@ function Game() {
         setWidth(32);
         setLength(16);
         setBombAmount(99);
+
         break;
       default:
         setWidth(16);
@@ -296,7 +297,7 @@ function Game() {
 
   function replayGame() { 
     reset();
-    pause();
+    //pause();
     setWinMessage(false);
     setLoseMessage(false);
     setFirstClick(false);
@@ -315,9 +316,9 @@ function Game() {
           <ConfigMenu onClickFunction={selectDifficulty} />
           <section className={cn("flex justify-between bg-[#a8a9aa] h-20 items-center mt-4 border-4 border-gray-500 rounded", 
             {
-              "w-[600px]": width === 16,
-              "w-[560px]": width === 8,
-              "w-[1000px]": width === 32
+              "w-full sm:w-[600px]": width === 16,
+              "w-full sm:w-[560px]": width === 8,
+              "w-full sm:w-[1000px]": width === 32
             }
           )}>
             <span className="ml-10">

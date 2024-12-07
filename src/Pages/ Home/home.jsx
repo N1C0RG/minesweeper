@@ -11,64 +11,64 @@ import I6l from "../../assets/I6l.png";
 
 function Home () {
   return (
-    <body className="text-blue-400 relative min-h-screen">
+    <div className="text-blue-400 relative min-h-screen">
       <Navbar />
       <div className="absolute inset-0 bgGrid z-[-1] opacity-50"></div>
       <div>
         <section>
-          <h1 className="font-bold text-9xl text-blue-800	text-center">Welcome to Minesweeper</h1>
-          <span className="flex justify-center flex-row items-center">
-            <p className="text-2xl">Click the icon</p>
+          <h1 className="font-bold text-6xl sm:text-9xl text-blue-800 text-center">Welcome to Minesweeper</h1>
+          <span className="flex justify-center flex-row items-center mt-2">
+            <p className="text-xl sm:text-2xl">Click the icon</p>
             <Link className="text-center" to="/game">
-              <img src={Mine} className=" size-10 ml-1 mr-1 hover:scale-125" alt="mine-icon" />
+              <img src={Mine} className="size-7 sm:size-10 ml-1 mr-1 hover:scale-125" alt="mine-icon" />
             </Link>
             <p className="text-2xl">to start playing</p>
           </span>
 
         </section>
 
-        <section className="flex flex-col items-start gap-10 mt-20 ml-8 text-4xl">
-          <h2 className="text-7xl text-blue-600">How the game works ?</h2>
-          <p className="text-left">
+        <section className="flex flex-col items-center sm:items-start gap-10 mt-10 sm:mt-20 sm:ml-8 text-4xl">
+          <h2 className="text-5xl sm:text-7xl text-blue-600">How the game works ?</h2>
+          <p className="ml-4 mr-4 text-justify sm:text-left sm:ml-0 sm:mr-0">
             The objective of the game is to clear a rectangular board containing
             hiddthout detonating any
             of them, with help from clues about the number of neighboring mines in each field.
           </p>
         </section>
         <section className="flex flex-col gap-10 mt-20 ml-8 mr-8 text-4xl mb-10">
-          <h3 className="text-center text-blue-600 text-7xl">Instructions</h3>
+          <h3 className="text-center text-blue-600 text-5xl sm:text-7xl">Instructions</h3>
           <span className="flex flex-col gap-5 items-center">
-            <div className="container flex flex-row p-4 rounded-lg gap-10 bg-[#004396] items-center">
-              <img className="hover:scale-110 size-1/3 rounded" src={I1} alt="click icon instruction" />
-              <p className="text-slate-950">Click on the icon to start the game.</p>
+            <div className="container flex flex-col sm:flex-row p-4 rounded-lg gap-10 bg-[#004396] items-center">
+              <img className="hover:scale-110 sm:size-1/3 rounded" src={I1} alt="click icon instruction" />
+              <p className="text-slate-950 text-2xl sm:text-4xl">Click on the icon to start the game.</p>
             </div>
-            <div className="container flex flex-row p-4 rounded-lg gap-10 bg-[#004396] items-center">
-              <img className="hover:scale-110 size-1/3 rounded" src={I2} alt="click icon instruction" />
-              <p className="text-slate-950">Click on a cell to reveal it.</p>
+            <div className="container flex flex-col sm:flex-row p-4 rounded-lg gap-10 bg-[#004396] items-center">
+              <img className="hover:scale-110 sm:size-1/3 rounded" src={I2} alt="click icon instruction" />
+              <p className="text-slate-950 text-2xl sm:text-4xl">Click on a cell to reveal it.</p>
             </div>
-            <div className="container flex flex-row p-4 rounded-lg gap-10 bg-[#004396] items-center">
-              <img className="hover:scale-110 size-1/3 rounded" src={I3} alt="click icon instruction" />
-              <p className="text-slate-950">Right click on a cell to flag it.</p>
+            <div className="container flex flex-col sm:flex-row p-4 rounded-lg gap-10 bg-[#004396] items-center">
+              <img className="hover:scale-110 sm:size-1/3 rounded" src={I3} alt="click icon instruction" />
+              <p className="text-slate-950 text-2xl sm:text-4xl">Right click on a cell to flag it.</p>
             </div>
-            <div className="container flex flex-row p-4 rounded-lg gap-10 bg-[#004396] items-center">
-              <img className="hover:scale-110 size-1/3 rounded" src={I4} alt="click icon instruction" />
-              <p className="text-slate-950">Reveal all cells without mines to win.</p>
+            <div className="container flex flex-col sm:flex-row p-4 rounded-lg gap-10 bg-[#004396] items-center">
+              <img className="hover:scale-110 sm:size-1/3 rounded" src={I4} alt="click icon instruction" />
+              <p className="text-slate-950 text-2xl sm:text-4xl">Reveal all cells without mines to win.</p>
             </div>
-            <div className="container flex flex-row p-4 rounded-lg gap-10 bg-[#004396] items-center">
-              <img className="hover:scale-110 size-1/3 rounded" src={I5} alt="click icon instruction" />
-              <p className="text-slate-950">Reveal a cell with a mine to lose.</p>
+            <div className="container flex flex-col sm:flex-row p-4 rounded-lg gap-10 bg-[#004396] items-center">
+              <img className="hover:scale-110 sm:size-1/3 rounded" src={I5} alt="click icon instruction" />
+              <p className="text-slate-950 text-2xl sm:text-4xl">Reveal a cell with a mine to lose.</p>
             </div>
-            <div className="container flex flex-row p-4 rounded-lg gap-10 bg-[#004396] items-center">
-              <img className="hover:scale-110 size-1/3 rounded" src={I6w} alt="click icon instruction" />
-              <img className="hover:scale-110 size-1/3 rounded" src={I6l} alt="click icon instruction" />
-              <p className="text-slate-950">Replay by clicking the trophy or vault boy.</p>
+            <div className="container flex flex-col sm:flex-row p-4 rounded-lg gap-10 bg-[#004396] items-center">
+              <img className="hover:scale-110 sm:size-1/3 rounded" src={I6w} alt="click icon instruction" />
+              <img className="hover:scale-110 sm:size-1/3 rounded" src={I6l} alt="click icon instruction" />
+              <p className="text-slate-950 text-2xl sm:text-4xl">Replay by clicking the trophy or vault boy.</p>
             </div>
           </span>
 
         </section>
 
       </div>
-    </body>
+    </div>
   )
 }
 
