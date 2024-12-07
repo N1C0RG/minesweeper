@@ -1,11 +1,27 @@
 import Navbar from "../../Commponents/Navbar/navbar";
 import JunimoStarfruit from "../../assets/junimo-starfruit.png";
 import LeaderBoardItem from "../../Commponents/LeaderBoard/leaderBoardItem";
-import Medal1 from "../../assets/medal-1.png";
-import Medal2 from "../../assets/medal-2.png";
-import Medal3 from "../../assets/medal-3.png";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
-function leaderBoard() {
+function LeaderBoard() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    showUsers();
+  }, []);
+
+  function showUsers() {
+    axios.get(`http://localhost:3000/user`)
+      .then((response) => {
+        setUsers(response.data);
+        const sortedUsers = response.data.sort((a, b) => b.score - a.score);
+        setUsers(sortedUsers);
+        console.log('Get users response: ', response.data);
+      }).catch((error) => {
+        console.error('Get users error: ', error);
+      });
+  }
   return (
     <div className="relative min-h-screen">
       <Navbar />
@@ -22,13 +38,18 @@ function leaderBoard() {
         <h1 className="text-3xl sm:text-5xl">Score</h1>
       </span>
       <section className="flex flex-col gap-4 mt-6">
-        <LeaderBoardItem />
-        <LeaderBoardItem />
-        <LeaderBoardItem />
+        {users.slice(0, 20).map((user, index) => (
+          <LeaderBoardItem 
+            key={index} 
+            rank={index + 1} 
+            alias={user.username} 
+            score={user.score}  
+          />
+        ))}
       </section>
 
     </div>
   );
 }
 
-export default leaderBoard;
+export default LeaderBoard;

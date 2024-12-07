@@ -10,8 +10,15 @@ import I6w from "../../assets/I6w.png";
 import I6l from "../../assets/I6l.png";
 import I7 from "../../assets/I7.png";
 import Instruction from "../../Commponents/Instruction/instruction";
+import Login from "../../Commponents/Login/login";
+import cn from "classnames";
+import { useContext } from "react";
+import { AppContext } from "../../context/appContext";
 
 function Home () {
+
+  const { logged } = useContext(AppContext);
+
   const instructions = [
     "Click on the icon to start the game.",
     "Click on a cell to reveal it.",
@@ -24,9 +31,21 @@ function Home () {
 
   return (
     <div className="text-blue-400 relative min-h-screen">
-      <Navbar />
+      <div className={cn("", 
+        {
+          "pointer-events-none blur-md": !logged,
+          "pointer-events-auto blur-none": logged
+        }
+      )}>
+        <Navbar />
+      </div>
       <div className="absolute inset-0 bgGrid z-[-1] opacity-50"></div>
-      <div>
+      <div className={cn("", 
+        {
+          "pointer-events-none blur-md": !logged,
+          "pointer-events-auto blur-none": logged
+        }
+      )}>
         <section>
           <h1 className="font-bold text-6xl sm:text-9xl text-blue-800 text-center">Welcome to Minesweeper</h1>
           <span className="flex justify-center flex-row items-center mt-2">
@@ -60,8 +79,10 @@ function Home () {
           </span>
 
         </section>
-
       </div>
+      <section className="absolute top-[10%]  left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40 blur-none">
+        <Login />
+      </section>
     </div>
   )
 }
