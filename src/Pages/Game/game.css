@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: repeat(16, 1fr);
   grid-template-rows: repeat(16, 1fr);  
-  background-color: grey;
+  background-color: #a8a9aa;
 }
 
 .msGrid-s { 
@@ -13,7 +13,7 @@
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);  
-  background-color: grey;
+  background-color: #a8a9aa;
 }
 
 .msGrid-l { 
@@ -22,7 +22,7 @@
   display: grid;
   grid-template-columns: repeat(32, 1fr);
   grid-template-rows: repeat(16, 1fr);  
-  background-color: grey;
+  background-color: #a8a9aa;
 }
 
 .msGrid-m div {
@@ -80,4 +80,23 @@
 .checked { 
   background-image: url('/src/assets/game/bg-tile.png');
   background-size: cover;
+}
+
+
+@media (max-width: 640px) {
+  .msGrid-m { 
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+  .msGrid-s { 
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+  .msGrid-l { 
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
 }
