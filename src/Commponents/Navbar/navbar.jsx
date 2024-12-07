@@ -10,13 +10,13 @@ function Navbar() {
 
   return (
     <>
-      <nav className="text-gray-900 flex justify-start gap-10 h-32 bg-blue-500 mb-10">
+      <nav className="text-gray-900 flex justify-start gap-3 sm:gap-10 h-32 bg-blue-500 mb-10">
         <span className="flex items-center ml-10">
           <Link to="/">
-            <h1 className="text-6xl hover:cursor-pointer">Minesweeper</h1>
+            <h1 className="text-4xl sm:text-6xl hover:cursor-pointer">Minesweeper</h1>
           </Link>
           <Link to="/game">
-            <img className=" hover:scale-125 h-16 w-16 hover:cursor-pointer" src={Mine} alt="mine-icon" />
+            <img className="size-10 hover:scale-125 sm:size-16 hover:cursor-pointer" src={Mine} alt="mine-icon" />
           </Link>
         </span>
 
@@ -29,7 +29,7 @@ function Navbar() {
             <MenuIcon size={40} /> 
           </div>
           <div className={cn(
-            "absolute flex flex-col top-[93px] bg-slate-50 rounded opacity-0 transition-all ease-in-out duration-300",
+            "absolute flex flex-col max-[640px]:left-48 top-[93px] bg-slate-50 rounded opacity-0 transition-all ease-in-out duration-300",
             {
               "invisible opacity-0": !menuOpen, 
               "visible opacity-100": menuOpen, 

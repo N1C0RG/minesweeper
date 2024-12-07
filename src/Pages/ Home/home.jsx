@@ -11,7 +11,7 @@ import I6l from "../../assets/I6l.png";
 
 function Home () {
   return (
-    <body className="text-blue-400 relative min-h-screen">
+    <div className="text-blue-400 relative min-h-screen">
       <Navbar />
       <div className="absolute inset-0 bgGrid z-[-1] opacity-50"></div>
       <div>
@@ -68,7 +68,7 @@ function Home () {
         </section>
 
       </div>
-    </body>
+    </div>
   )
 }
 
