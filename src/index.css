@@ -27,8 +27,8 @@ code {
 .bgImage {
   background-image: url('/src/assets/mine-bg.png');
   background-repeat: repeat;
-  background-attachment: fixed;
   background-size: cover;
+  background-position: center;
 }
 
 * {

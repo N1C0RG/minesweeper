@@ -45,7 +45,6 @@ function Game() {
     setLoseMessage(false);
   } 
 
-
   // defino componentes css 
 
   function selectDifficulty(difficulty) {
@@ -73,7 +72,6 @@ function Game() {
         break;
     }   
   } 
-
 
   function createArray() {
     const bombArray = Array(bombAmount).fill('bomb');
@@ -307,6 +305,7 @@ function Game() {
     setReplay(!replay);
   }
 
+
   return (
     <>
       <div>
@@ -318,7 +317,7 @@ function Game() {
             {
               "w-full sm:w-[600px]": width === 16,
               "w-full sm:w-[560px]": width === 8,
-              "w-full sm:w-[1000px]": width === 32
+              "w-full lg:w-[1000px]": width === 32
             }
           )}>
             <span className="ml-10">
@@ -337,7 +336,7 @@ function Game() {
             {
               "msGrid-m": width === 16,
               "msGrid-s": width === 8,
-              "msGrid-l": width === 32
+              "msGrid-l": width === 32 
             }
           )}>
             {tilesC.map((tile, index) => (
