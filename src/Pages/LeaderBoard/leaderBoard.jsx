@@ -12,7 +12,7 @@ function LeaderBoard() {
   }, []);
 
   function showUsers() {
-    axios.get(`http://localhost:3000/user`)
+    axios.get(`https://minesweeper-backend-ek95.onrender.com/user`)
       .then((response) => {
         setUsers(response.data);
         const sortedUsers = response.data.sort((a, b) => b.score - a.score);

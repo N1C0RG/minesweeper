@@ -10,7 +10,7 @@ function Login() {
 
   const submitLogin = function(event){
     event.preventDefault();
-    axios.post(`http://localhost:3000/user`, {
+    axios.post(`https://minesweeper-backend-ek95.onrender.com/user`, {
         username: username
       }).then((response) => {
         console.log('Create alias response: ', response);

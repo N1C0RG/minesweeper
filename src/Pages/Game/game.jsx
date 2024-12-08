@@ -313,7 +313,7 @@ function Game() {
   function updateScore() {
     const points = Math.floor(1000 / totalSeconds);
     if (points < score){ 
-      axios.put(`http://localhost:3000/user/${id}`, {
+      axios.put(`https://minesweeper-backend-ek95.onrender.com/user/${id}`, {
         score: points
       }).then((response) => {
         console.log('Update score success');
