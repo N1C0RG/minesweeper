@@ -292,6 +292,7 @@ function Game() {
         matches ++; 
       }
       if (matches === bombAmount) {
+        pause();
         setIsWin(true);
         updateScore();
         setWinMessage(true);
@@ -311,10 +312,10 @@ function Game() {
   }
 
   function updateScore() {
-    const points = Math.floor(1000 / totalSeconds);
-    if (points < score){ 
+    const points = Math.floor(100000 / totalSeconds);
+    if (points > score){ 
       axios.put(`https://minesweeper-backend-ek95.onrender.com/user/${id}`, {
-        score: points
+        score: points > 0 ? points : 100000
       }).then((response) => {
         console.log('Update score success');
       }).catch((error) => {
@@ -326,9 +327,9 @@ function Game() {
 
   return (
     <>
-      <div>
+      <div className="relative min-h-screen">
         <Navbar />
-        <div className="absolute inset-0 bgImage z-[-1] opacity-80"></div>
+        <div className="absolute inset-0 bgImage z-[-1] opacity-80 min-h-screen"></div>
         <div className="flex flex-col items-center justify-center">
           <ConfigMenu onClickFunction={selectDifficulty} />
           <section className={cn("flex justify-between bg-[#a8a9aa] h-20 items-center mt-4 border-4 border-gray-500 rounded", 

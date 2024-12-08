@@ -39,7 +39,7 @@ function Home () {
       )}>
         <Navbar />
       </div>
-      <div className="absolute inset-0 bgGrid z-[-1] opacity-50"></div>
+      <div className="absolute inset-0 bgGrid z-[-1] opacity-50 min-h-screen"></div>
       <div className={cn("", 
         {
           "pointer-events-none blur-md": !logged,
