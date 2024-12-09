@@ -3,14 +3,16 @@ import axios from "axios";
 import { useContext } from "react";
 import { AppContext } from "../../context/appContext";
 import cn from "classnames";
+const URL = 'http://localhost:3000'; // URL del backend
+
 
 function Login() {
   const [username, setUsername] = useState("");
-  const { setAlias, setLogged, logged, setId} = useContext(AppContext);
+  const { setAlias, setLogged, getLogged, setId, getAlias, getId} = useContext(AppContext);
 
   const submitLogin = function(event){
     event.preventDefault();
-    axios.post(`https://minesweeper-backend-ek95.onrender.com/user`, {
+    axios.post(`${URL}/user`, {
         username: username
       }).then((response) => {
         console.log('Create alias response: ', response);
@@ -25,9 +27,9 @@ function Login() {
   return (
     <div className={cn("bgImage p-3 sm:p-16 rounded-lg shadow-sm text-gray-900 w-300px sm:w-600px border-4 border-gray-900", 
       {
-        "hidden": logged === true,
-        "block": logged === false 
-      }
+        "hidden": getLogged() === true,
+        "block": getLogged() === false 
+      } 
     )}>
       <form onSubmit={submitLogin} className="flex flex-col gap-8">
         <span className="flex flex-col gap-2">

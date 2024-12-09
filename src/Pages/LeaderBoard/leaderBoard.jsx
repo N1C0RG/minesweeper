@@ -3,6 +3,7 @@ import JunimoStarfruit from "../../assets/junimo-starfruit.png";
 import LeaderBoardItem from "../../Commponents/LeaderBoard/leaderBoardItem";
 import axios from "axios";
 import { useState, useEffect } from "react";
+const URL = 'http://localhost:3000'; // URL del backend
 
 function LeaderBoard() {
   const [users, setUsers] = useState([]);
@@ -12,7 +13,7 @@ function LeaderBoard() {
   }, []);
 
   function showUsers() {
-    axios.get(`https://minesweeper-backend-ek95.onrender.com/user`)
+    axios.get(`${URL}/user`)
       .then((response) => {
         setUsers(response.data);
         const sortedUsers = response.data.sort((a, b) => b.score - a.score);

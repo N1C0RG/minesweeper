@@ -12,6 +12,7 @@ import WinMessageComponent from "../../Commponents/GameMessage/winMessage";
 import LoseMessageComponent from "../../Commponents/GameMessage/loseMessage";
 import { AppContext } from "../../context/appContext";
 import axios from "axios";
+const URL = 'http://localhost:3000'; // URL del backend
 
 function Game() {
   const [shuffledArray, setShuffledArray] = useState([]);
@@ -22,6 +23,7 @@ function Game() {
   const [isWin, setIsWin] = useState(false);
   const [flags, setFalgs] = useState(0); 
   const [firstClick, setFirstClick] = useState(false);
+  const [difficulty, setDifficulty] = useState('medium');
   // de la matriz que voy a hacer 
 
   const [matrixC, setMatrixC] = useState([]);
@@ -43,7 +45,7 @@ function Game() {
   const [loseMessage, setLoseMessage] = useState(false);
 
   // data del usuario 
-  const { id, score } = useContext(AppContext);
+  const { getId, getScore, setScore } = useContext(AppContext);
 
   function closeMessage() {
     setWinMessage(false);
@@ -53,6 +55,7 @@ function Game() {
   // defino componentes css 
 
   function selectDifficulty(difficulty) {
+    setDifficulty(difficulty);
     switch (difficulty) {
       case 'easy':
         setWidth(8);
@@ -311,11 +314,29 @@ function Game() {
     setReplay(!replay);
   }
 
+  function multiplier() {
+    switch (difficulty) {
+      case 'easy':
+        return 10;
+      case 'medium':
+        return 1000;
+      case 'hard':
+        return 10000;
+      default:
+        return 1000;
+    }
+  } 
+
+  function calculateScore() {
+    return Math.floor(1000 / totalSeconds) * multiplier();
+  }
+
   function updateScore() {
-    const points = Math.floor(100000 / totalSeconds);
-    if (points > score){ 
-      axios.put(`https://minesweeper-backend-ek95.onrender.com/user/${id}`, {
-        score: points > 0 ? points : 100000
+    const points =calculateScore();
+    if (points > getScore){ 
+      setScore(points);
+      axios.put(`${URL}/user/${getId}`, {
+        score: points
       }).then((response) => {
         console.log('Update score success');
       }).catch((error) => {

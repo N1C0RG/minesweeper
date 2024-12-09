@@ -17,7 +17,7 @@ import { AppContext } from "../../context/appContext";
 
 function Home () {
 
-  const { logged } = useContext(AppContext);
+  const { getLogged } = useContext(AppContext);
 
   const instructions = [
     "Click on the icon to start the game.",
@@ -33,8 +33,8 @@ function Home () {
     <div className="text-blue-400 relative min-h-screen">
       <div className={cn("", 
         {
-          "pointer-events-none blur-md": !logged,
-          "pointer-events-auto blur-none": logged
+          "pointer-events-none blur-md": !getLogged,
+          "pointer-events-auto blur-none": getLogged
         }
       )}>
         <Navbar />
@@ -42,8 +42,8 @@ function Home () {
       <div className="absolute inset-0 bgGrid z-[-1] opacity-50 min-h-screen"></div>
       <div className={cn("", 
         {
-          "pointer-events-none blur-md": !logged,
-          "pointer-events-auto blur-none": logged
+          "pointer-events-none blur-md": !getLogged,
+          "pointer-events-auto blur-none": getLogged
         }
       )}>
         <section>
