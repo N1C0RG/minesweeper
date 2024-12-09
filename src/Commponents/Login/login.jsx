@@ -27,8 +27,8 @@ function Login() {
   return (
     <div className={cn("bgImage p-3 sm:p-16 rounded-lg shadow-sm text-gray-900 w-300px sm:w-600px border-4 border-gray-900", 
       {
-        "hidden": getLogged() === true,
-        "block": getLogged() === false 
+        "hidden": getLogged(),
+        "block": !getLogged() 
       } 
     )}>
       <form onSubmit={submitLogin} className="flex flex-col gap-8">
