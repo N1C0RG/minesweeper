@@ -1,5 +1,5 @@
 import { House, Info, MenuIcon, ScrollText } from "lucide-react";
-import NavbarItem from "../NavbarItem/navbarItem";
+import NavbarItem from "./navbarItem";
 import { useState } from "react";
 import cn from "classnames";
 import Mine from "../../assets/game/mine-icon.png";

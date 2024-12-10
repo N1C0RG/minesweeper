@@ -3,9 +3,9 @@ import T1 from "../../assets/teammate1.jpg";
 
 function AboutUs () { 
   return (
-    <body className="text-gray-100">
+    <div className="text-gray-100  relative min-h-screen">
       <Navbar />
-      <div className="absolute inset-0 h-screen bgImage z-[-1] opacity-80"></div>
+      <div className="absolute inset-0 h-screen bgImage z-[-1] opacity-80 min-h-screen"></div>
       <div>
         <h1 className="font-bold text-6xl sm:text-9xl text-blue-800	text-center">Who We Are</h1>
         <p className="mt-10 text-xl sm:text-3xl ">
@@ -28,7 +28,7 @@ function AboutUs () {
         </section>
       
       </div>
-    </body>
+    </div>
   )
 }
 

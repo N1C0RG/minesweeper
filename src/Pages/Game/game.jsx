@@ -12,7 +12,7 @@ import WinMessageComponent from "../../Commponents/GameMessage/winMessage";
 import LoseMessageComponent from "../../Commponents/GameMessage/loseMessage";
 import { AppContext } from "../../context/appContext";
 import axios from "axios";
-const URL = 'http://localhost:3000'; // URL del backend
+const URL = process.env.REACT_APP__BACKEND_URL; // URL del backend
 
 function Game() {
   const [shuffledArray, setShuffledArray] = useState([]);

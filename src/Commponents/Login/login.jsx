@@ -3,12 +3,12 @@ import axios from "axios";
 import { useContext } from "react";
 import { AppContext } from "../../context/appContext";
 import cn from "classnames";
-const URL = 'http://localhost:3000'; // URL del backend
+const URL = process.env.REACT_APP__BACKEND_URL; // URL del backend
 
 
 function Login() {
   const [username, setUsername] = useState("");
-  const { setAlias, setLogged, getLogged, setId, getAlias, getId} = useContext(AppContext);
+  const { setAlias, setLogged, getLogged, setId } = useContext(AppContext);
 
   const submitLogin = function(event){
     event.preventDefault();
