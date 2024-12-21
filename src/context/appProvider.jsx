@@ -9,6 +9,7 @@ function AuthProvider({ children }) {
   const [logged, setLoggedData] = useState(localStorage.getItem('logged') || encriptado('false'));
   const [score, setScoreData] = useState(localStorage.getItem('score') || encriptado(0));
   const [id, setIdData] = useState(localStorage.getItem('id') || encriptado(0));
+	const [socket, setSocketData] = useState(localStorage.getItem('socket') || encriptado('null'));
 
   function encriptado(data){ 
 		var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), SECRET_KEY).toString(); 
@@ -24,6 +25,11 @@ function AuthProvider({ children }) {
   function setAlias(value) {
 		var encryptedValue = encriptado(value);
     setAliasData(encryptedValue);
+  }
+
+	function setSocket(value) {
+		var encryptedValue = encriptado(value);
+    setSocketData(encryptedValue);
   }
 
 	function setLogged(value) {
@@ -43,6 +49,11 @@ function AuthProvider({ children }) {
 
 	function getAlias() {
 		var decryptedData = desencriptado(alias);
+		return decryptedData;
+	}
+
+	function getSocket() {
+		var decryptedData = desencriptado(socket);
 		return decryptedData;
 	}
 
@@ -67,10 +78,11 @@ function AuthProvider({ children }) {
       localStorage.setItem('alias', alias);
       localStorage.setItem('logged', logged);
       localStorage.setItem('id', id);
-  }, [alias, score, logged, id]);
+			localStorage.setItem('socket', socket);
+  }, [alias, score, logged, id, socket]);
 
   return (
-      <AppContext.Provider value={{ getAlias, setAlias, getLogged, setLogged, getScore, setScore, getId, setId}}>
+      <AppContext.Provider value={{ getAlias, setAlias, getLogged, setLogged, getScore, setScore, getId, setId, getSocket, setSocket}}>
           {children}
       </AppContext.Provider>
   );

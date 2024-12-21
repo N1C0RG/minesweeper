@@ -12,6 +12,10 @@ import WinMessageComponent from "../../Commponents/GameMessage/winMessage";
 import LoseMessageComponent from "../../Commponents/GameMessage/loseMessage";
 import { AppContext } from "../../context/appContext";
 import axios from "axios";
+import io from 'socket.io-client';
+
+const socket = io.connect('http://localhost:3003');
+
 const URL = process.env.REACT_APP__BACKEND_URL; // URL del backend
 
 function Game() {
@@ -183,7 +187,6 @@ function Game() {
         generateTile(newMatrix);
         setFalgs(flags + 1);
         checkForWin();
-        console.log(newMatrix[index][0]);
       } else {  
         if (newTile.includes('flag')) {
           newMatrix[index][0].pop('flag');
@@ -296,8 +299,8 @@ function Game() {
       }
       if (matches === bombAmount) {
         pause();
+        //updateScore();
         setIsWin(true);
-        updateScore();
         setWinMessage(true);
       } 
     }
@@ -327,18 +330,27 @@ function Game() {
     }
   } 
 
+  useEffect(() => { 
+    if (isWin && !isGameOver) {
+      updateScore();
+    }
+  } , [isWin]);
+
   function calculateScore() {
     return Math.floor(1000 / totalSeconds) * multiplier();
   }
 
   function updateScore() {
-    const points =calculateScore();
-    if (points > getScore){ 
+    //const points = calculateScore();
+    var points = 1000; 
+    //if (points > getScore){ 
+    if (true) {
       setScore(points);
-      axios.put(`${URL}/user/${getId}`, {
+      axios.put(`${URL}/user/${getId()}`, {
         score: points
       }).then((response) => {
         console.log('Update score success');
+        //socket.emit('update_leaderBoard', { message: 'update' });
       }).catch((error) => {
         console.error('Update score error: ', error);
       });

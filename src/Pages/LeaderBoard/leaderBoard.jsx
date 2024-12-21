@@ -1,27 +1,35 @@
 import Navbar from "../../Commponents/Navbar/navbar";
-import JunimoStarfruit from "../../assets/junimo-starfruit.png";
 import LeaderBoardItem from "../../Commponents/LeaderBoard/leaderBoardItem";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import io from 'socket.io-client';
+
 const URL = process.env.REACT_APP__BACKEND_URL; // URL del backend
+
+const socket = io.connect('http://localhost:3003');
 
 function LeaderBoard() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     showUsers();
-  }, []);
+    socket.on("receive_leaderBoard", (data) => {
+      //const users = JSON.parse(data);
+      console.log('se reciven los datos', data);
+      //console.log('leaderboard', users);   
+    })
+  }, [socket]);
 
   function showUsers() {
-    axios.get(`${URL}/user`)
-      .then((response) => {
-        setUsers(response.data);
-        const sortedUsers = response.data.sort((a, b) => b.score - a.score);
-        setUsers(sortedUsers);
-        console.log('Get users successfull'); 
-      }).catch((error) => {
-        console.error('Get users error: ', error);
-      });
+    // axios.get(`${URL}/user`)
+    //   .then((response) => {
+    //     setUsers(response.data);
+    //     const sortedUsers = response.data.sort((a, b) => b.score - a.score);
+    //     setUsers(sortedUsers);
+    //     console.log('Get users successfull'); 
+    //   }).catch((error) => {
+    //     console.error('Get users error: ', error);
+    //   });
   }
   return (
     <div className="relative min-h-screen">
