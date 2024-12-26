@@ -47,7 +47,7 @@ function Game() {
   const [loseMessage, setLoseMessage] = useState(false);
 
   // data del usuario 
-  const { getId, setScore } = useContext(AppContext);
+  const { getId, setScore, getScore } = useContext(AppContext);
 
   function closeMessage() {
     setWinMessage(false);
@@ -340,18 +340,14 @@ function Game() {
     return Math.floor(1000 / totalSeconds) * multiplier();
   }
 
-
-
   function updateScore() {
-    //const points = calculateScore();
-    var points = 1000; 
-    //if (points > getScore){ 
-    if (true) {
+    const points = calculateScore();
+    if (points > getScore()){ 
       setScore(points);
       axios.put(`${URL}/user/${getId()}`, {
         score: points
       }).then((response) => {
-        console.log('Update score success');
+        console.log('Update score to:', points);
         socket.emit('update_leaderBoard', { message: 'update' });
       }).catch((error) => {
         console.error('Update score error: ', error);

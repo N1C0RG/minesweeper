@@ -2,7 +2,6 @@ import Navbar from "../../Commponents/Navbar/navbar";
 import LeaderBoardItem from "../../Commponents/LeaderBoard/leaderBoardItem";
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
-import io from 'socket.io-client';
 import { AppContext } from "../../context/appContext";
 
 const URL = process.env.REACT_APP__BACKEND_URL; // URL del backend
@@ -13,8 +12,6 @@ function LeaderBoard() {
 
   useEffect(() => {
     showUsers();
-
-    // getLeaderboardUsers();
   }, [getLeaderboardUsers]);
 
   function showUsers() {
