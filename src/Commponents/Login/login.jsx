@@ -16,7 +16,7 @@ function Login() {
         username: username
       }).then((response) => {
         console.log('Create alias response: ', response);
-        setLogged(true);
+        setLogged('true');
         setId(response.data.id);
         setAlias(response.data.username);
       }).catch((error) => {      
@@ -25,6 +25,7 @@ function Login() {
   }
 
   return (
+
     <div className={cn("bgImage p-3 sm:p-16 rounded-lg shadow-sm text-gray-900 w-300px sm:w-600px border-4 border-gray-900", 
       {
         "hidden": getLogged(),

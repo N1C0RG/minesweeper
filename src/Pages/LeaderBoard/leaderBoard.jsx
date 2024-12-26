@@ -1,35 +1,39 @@
 import Navbar from "../../Commponents/Navbar/navbar";
 import LeaderBoardItem from "../../Commponents/LeaderBoard/leaderBoardItem";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import io from 'socket.io-client';
+import { AppContext } from "../../context/appContext";
 
 const URL = process.env.REACT_APP__BACKEND_URL; // URL del backend
 
-const socket = io.connect('http://localhost:3003');
-
 function LeaderBoard() {
   const [users, setUsers] = useState([]);
+  const { getLeaderboardUsers } = useContext(AppContext);
 
   useEffect(() => {
     showUsers();
-    socket.on("receive_leaderBoard", (data) => {
-      //const users = JSON.parse(data);
-      console.log('se reciven los datos', data);
-      //console.log('leaderboard', users);   
-    })
-  }, [socket]);
+
+    // getLeaderboardUsers();
+  }, [getLeaderboardUsers]);
 
   function showUsers() {
-    // axios.get(`${URL}/user`)
-    //   .then((response) => {
-    //     setUsers(response.data);
-    //     const sortedUsers = response.data.sort((a, b) => b.score - a.score);
-    //     setUsers(sortedUsers);
-    //     console.log('Get users successfull'); 
-    //   }).catch((error) => {
-    //     console.error('Get users error: ', error);
-    //   });
+    if (typeof getLeaderboardUsers() === 'object'){
+      setUsers(getLeaderboardUsers()); 
+    } 
+    else {
+      axios.get(`${URL}/user`)
+        .then((response) => {
+          setUsers(response.data);
+          const sortedUsers = response.data.sort((a, b) => b.score - a.score);
+          setUsers(sortedUsers);
+          console.log('Get users successfull'); 
+        }).catch((error) => {
+          console.error('Get users error: ', error);
+        });
+    } 
+
+
   }
   return (
     <div className="relative min-h-screen">
@@ -48,7 +52,7 @@ function LeaderBoard() {
       </section>
 
       <section className="flex flex-col gap-4 mt-6">
-        {users.slice(0, 10).map((user, index) => (
+        {users.map((user, index) => (
           <LeaderBoardItem 
             key={index} 
             rank={index + 1} 

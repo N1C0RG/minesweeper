@@ -50,7 +50,7 @@
 .bomb { 
   height: 100%;
   width: 100%;
-  background-color: aqua;
+  background-image: url('/src/assets/game/tile-icon.png');
   background-size: cover;
 }
 
