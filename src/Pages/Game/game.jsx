@@ -173,6 +173,10 @@ function Game() {
   }, [shuffledArray]);
 
   function addFlag(index) {
+    if (firstClick === false) {
+      start();  
+      setFirstClick(true)
+    }; 
     let newMatrix = [...matrixC];    
     const newTile = newMatrix[index][0];
     if (isGameOver) return;
