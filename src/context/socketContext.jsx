@@ -2,9 +2,9 @@ import React, { createContext, useContext, useEffect } from 'react';
 import io from 'socket.io-client';
 import { AppContext } from "./appContext";
 
-
+const URL = process.env.REACT_APP__BACKEND_URL; // URL del backend
 const SocketContext = createContext();
-const socket = io.connect('http://localhost:3003');
+const socket = io.connect(URL);
 
 
 export const useSocket = () => useContext(SocketContext);
