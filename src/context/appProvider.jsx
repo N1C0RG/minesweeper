@@ -12,14 +12,24 @@ function AuthProvider({ children }) {
 	const [leaderboardUsers, setLeaderboardUsersData] = useState(localStorage.getItem('leaderboardUsers') || null);
 
   function encriptado(data){ 
-		var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), SECRET_KEY).toString(); 
-		return ciphertext; 
+		try { 
+			var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), SECRET_KEY).toString(); 
+			return ciphertext; 
+		} catch (error) {
+			console.error('Error encrypting data:', error);
+			return 'null';
+		}
 	} 
 	
 	function desencriptado(data){
-		var bytes = CryptoJS.AES.decrypt(data, SECRET_KEY);
-		var decryptedData = bytes.toString(CryptoJS.enc.Utf8);
-		return JSON.parse(decryptedData);
+		try {
+			var bytes = CryptoJS.AES.decrypt(data, SECRET_KEY);
+			var decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+			return JSON.parse(decryptedData);
+		} catch (error) {
+			console.error('Error decrypting or parsing data:', error);
+			return 'null';
+		}
 	}
 
   function setAlias(value) {
@@ -49,7 +59,7 @@ function AuthProvider({ children }) {
 
 	function getLogged() {
 		var decryptedData = desencriptado(logged);
-		return decryptedData === 'true';
+		return decryptedData === 'true' ;
 	}
 
 	function getScore() {
